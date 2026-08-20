@@ -10,9 +10,9 @@ The system follows a modern client-server architecture with real-time capabiliti
 - **Mapping**: Leaflet + OpenStreetMap (with Mapbox visualization for heatmaps)
 
 ### 2.2 Back-End
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **API**: REST APIs for standard CRUD, Socket.IO / WebSockets for real-time tracking and notifications.
+- **Runtime**: Python 3
+- **Framework**: Django (with Django Rest Framework)
+- **API**: REST APIs for standard CRUD, Django Channels / WebSockets for real-time tracking and notifications.
 
 ### 2.3 Database
 - **Primary Database**: PostgreSQL
