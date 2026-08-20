@@ -16,18 +16,6 @@ frontend/package-lock.json
 frontend/dist
 frontend/dist-ssr
 
-.env
-.env.dev
-.env.production
-
-.env
-.env.dev
-.env.production
-
-backend/**/__pycache__
-backend/**/.venv
-__pycache__/
-*.py[cod]
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -53,6 +41,8 @@ backend/venv/
 backend/.venv/
 backend/env.bak/
 backend/venv.bak/
+__pycache__/
+*.py[cod]
 
 # Django specific
 backend/*.log
