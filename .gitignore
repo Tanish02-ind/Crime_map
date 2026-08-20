@@ -16,6 +16,10 @@ frontend/package-lock.json
 frontend/dist
 frontend/dist-ssr
 
+backend/**/__pycache__
+backend/**/.venv
+__pycache__/
+*.py[cod]
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
