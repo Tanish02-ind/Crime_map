@@ -16,6 +16,10 @@ frontend/package-lock.json
 frontend/dist
 frontend/dist-ssr
 
+.env
+.env.dev
+.env.production
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -27,4 +31,28 @@ frontend/dist-ssr
 *.sln
 *.sw?
 
+backend/accounts/__pycache__/
+backend/**/.venv/
+
+# Django / Python
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/*.pyd
+backend/**/__pycache__/
+backend/.Python
+backend/env/
+backend/venv/
 backend/.venv/
+backend/env.bak/
+backend/venv.bak/
+
+# Django specific
+backend/*.log
+backend/local_settings.py
+backend/db.sqlite3
+backend/db.sqlite3-journal
+backend/media/
+backend/staticfiles/
+
+# uv lock (if using uv but not checking it in, though usually uv.lock is checked in)
+# backend/uv.lock
