@@ -1,33 +1,252 @@
 @import "tailwindcss";
 
-* {
-    box-sizing: border-box;
+/* ============================================================
+   CampusWatch — Institutional design tokens
+   Palette grounded in the VGEC brand system: institutional
+   blue, signal gold, heritage red — set on a warm parchment
+   ground with a serif display face for an official register.
+   ============================================================ */
+@theme {
+    /* Institutional Blue — replaces the default Tailwind "blue" scale */
+    --color-blue-50: #EEF2F7;
+    --color-blue-100: #DCE3EE;
+    --color-blue-200: #B8C8DF;
+    --color-blue-300: #92A9C7;
+    --color-blue-400: #6485AC;
+    --color-blue-500: #3E6089;
+    --color-blue-600: #1E3A63;
+    --color-blue-700: #172E4E;
+    --color-blue-800: #11233B;
+    --color-blue-900: #0C192B;
+    --color-blue-950: #08111D;
+
+    /* Heritage Red — deepened toward maroon for gravity */
+    --color-red-50: #FBEEEE;
+    --color-red-100: #F5D9DA;
+    --color-red-200: #E9B3B6;
+    --color-red-300: #D8858B;
+    --color-red-400: #BE5560;
+    --color-red-500: #9E3542;
+    --color-red-600: #7E2733;
+    --color-red-700: #611E28;
+    --color-red-800: #4A171F;
+    --color-red-900: #351116;
+
+    /* Slate — cooled toward navy-ink for dark surfaces */
+    --color-slate-900: #10202F;
+    --color-slate-950: #0A1826;
+
+    /* Signal Gold — new accent scale (bg-gold-*, text-gold-*, border-gold-*) */
+    --color-gold-50: #FBF6E9;
+    --color-gold-100: #F5E9C6;
+    --color-gold-200: #EAD495;
+    --color-gold-300: #DCB962;
+    --color-gold-400: #C9A227;
+    --color-gold-500: #AC8720;
+    --color-gold-600: #8A6C1B;
+    --color-gold-700: #695215;
+
+    --radius-xl: 0.5rem;
+    --radius-2xl: 0.75rem;
+    --radius-3xl: 1.1rem;
+
+    --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
-html {
-    scroll-behavior: smooth;
+@layer base {
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        min-width: 320px;
+        font-family: var(--font-sans);
+        background: #F7F5EF;
+        color: #16232E;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    ::selection {
+        background: rgba(201, 162, 39, .22);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-sans);
+        font-weight: 700;
+    }
+
+    .font-mono,
+    code {
+        font-family: var(--font-mono);
+    }
 }
 
-body {
-    margin: 0;
-    font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+@layer components {
+    .brand-mark {
+        @apply flex shrink-0 items-center justify-center rounded-full bg-blue-700 text-gold-300;
+        border: 1.5px solid rgba(201, 162, 39, .55);
+        box-shadow: 0 6px 16px rgba(8, 17, 29, .28);
+    }
 
-    background: #f8fafc;
-    color: #0f172a;
+    .avatar {
+        @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-50 text-xs font-bold text-blue-700;
+        font-family: var(--font-sans);
+    }
+
+    .avatar-lg {
+        @apply h-10 w-10 bg-blue-600 text-white;
+    }
+
+    .card {
+        @apply rounded-2xl bg-white;
+        border: 1px solid #E4DECC;
+        box-shadow: 0 1px 2px rgba(16, 32, 47, .04), 0 10px 26px rgba(16, 32, 47, .05);
+    }
+
+    .card-hover {
+        @apply transition duration-200;
+    }
+
+    .card-hover:hover {
+        border-color: #CBBE94;
+        box-shadow: 0 2px 4px rgba(16, 32, 47, .05), 0 14px 32px rgba(16, 32, 47, .08);
+    }
+
+    .icon-box {
+        @apply flex h-11 w-11 items-center justify-center rounded-xl;
+    }
+
+    .eyebrow {
+        @apply inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase;
+        letter-spacing: .14em;
+    }
+
+    .section-kicker {
+        @apply text-xs font-bold uppercase text-gold-600;
+        letter-spacing: .18em;
+        font-family: var(--font-sans);
+    }
+
+    .section-title {
+        @apply mt-3 text-3xl font-bold text-blue-950 sm:text-4xl;
+        font-family: var(--font-sans);
+        letter-spacing: -.01em;
+        line-height: 1.15;
+        color: #0F2038;
+    }
+
+    .section-copy {
+        @apply mt-4 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition duration-150 focus:outline-none focus:ring-4 focus:ring-blue-100 disabled:pointer-events-none disabled:opacity-50;
+        letter-spacing: .01em;
+    }
+
+    .btn-sm {
+        @apply px-3.5 py-2 text-xs;
+    }
+
+    .btn-lg {
+        @apply px-5 py-3.5 text-sm;
+    }
+
+    .btn-primary {
+        @apply bg-blue-700 text-white hover:bg-blue-800;
+        box-shadow: 0 6px 16px rgba(11, 25, 43, .22);
+    }
+
+    .btn-primary:hover {
+        box-shadow: 0 8px 20px rgba(11, 25, 43, .28);
+    }
+
+    .input,
+    .auth-input {
+        @apply w-full rounded-lg bg-slate-50 px-3.5 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-4 focus:ring-blue-100;
+        border: 1px solid #D9D2BF;
+    }
+
+    .input:focus,
+    .auth-input:focus {
+        border-color: #1E3A63;
+    }
+
+    .icon-button {
+        @apply flex h-10 w-10 items-center justify-center rounded-lg bg-white text-slate-600 hover:bg-slate-50;
+        border: 1px solid #E4DECC;
+    }
+
+    .notification-button {
+        @apply relative flex h-10 w-10 items-center justify-center rounded-lg bg-white text-slate-600 hover:bg-slate-50;
+        border: 1px solid #E4DECC;
+    }
+
+    .notification-button span {
+        @apply absolute right-1.5 top-1.5 min-w-4 rounded-full bg-red-600 px-1 text-[8px] font-bold leading-4 text-white;
+    }
+
+    .status-dot {
+        @apply inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[10px] font-bold text-emerald-300;
+    }
+
+    .status-dot span {
+        @apply h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400;
+    }
+
+    .alert-error {
+        @apply flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 px-3.5 py-3 text-xs font-semibold leading-5 text-red-700;
+    }
+
+    /* Complaint / reference numbers read as official document identifiers */
+    .ref-id {
+        font-family: var(--font-mono);
+        letter-spacing: .01em;
+    }
 }
 
-button,
-input,
-textarea,
-select {
-    font: inherit;
+/* Solid, formal emphasis — not a gradient */
+.text-gradient {
+    color: #C9A227;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.hero-grid {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* Concentric ring watermark — the seal motif, used in place of glow blobs */
+.seal-watermark {
+    background-image: repeating-radial-gradient(circle at center, rgba(201, 162, 39, .5) 0, rgba(201, 162, 39, .5) 1.5px, transparent 1.5px, transparent 34px);
+    opacity: .07;
+}
+
+.page-enter {
+    animation: pageEnter .3s ease-out both;
 }
 
 .leaflet-container {
@@ -36,25 +255,56 @@ select {
     z-index: 0;
 }
 
+.leaflet-control-zoom {
+    overflow: hidden;
+    border: 1px solid rgba(16, 32, 47, .18) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 22px rgba(16, 32, 47, .12) !important;
+}
+
+.leaflet-control-zoom a {
+    border: 0 !important;
+    color: #1E3A63 !important;
+    font-weight: 700 !important;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 10px !important;
+    box-shadow: 0 16px 38px rgba(16, 32, 47, .18) !important;
+}
+
+.leaflet-popup-content {
+    margin: 14px 16px !important;
+    font-family: var(--font-sans);
+}
+
+.leaflet-control-attribution {
+    font-size: 9px !important;
+    opacity: .75;
+}
+
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #F1EEE5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #CDC5AE;
     border-radius: 999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
-}
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
 
-@layer components {
-    .input {
-        @apply w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm outline-none transition focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

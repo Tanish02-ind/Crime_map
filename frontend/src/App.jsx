@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -7,20 +7,31 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const location = useLocation();
+
+  // Hide the global navbar on auth pages (LoginPage and RegisterPage have their own dedicated header)
+  if (location.pathname === '/login' || location.pathname === '/register') {
+    return null;
+  }
   
   return (
-    <nav className="bg-gray-800 p-4 text-white flex justify-between items-center">
-      <Link to="/" className="font-bold text-xl">Crime Map</Link>
+    <nav className="bg-[#0C1017] border-b border-slate-800 px-6 py-4 text-white flex justify-between items-center shadow-lg">
+      <Link to="/" className="font-black text-lg tracking-wider uppercase flex items-center gap-2">
+        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 text-xs font-black shadow-[0_0_12px_rgba(245,158,11,0.35)]">
+          CM
+        </span>
+        Crime Map
+      </Link>
       <div>
         {user ? (
           <div className="flex items-center space-x-4">
-            <span>Welcome, {user.username} ({user.role})</span>
-            <button onClick={logout} className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Logout</button>
+            <span className="text-sm text-slate-300">Welcome, <strong className="text-white">{user.username}</strong> <span className="text-xs px-2 py-0.5 rounded bg-blue-900/60 text-blue-300 font-mono">({user.role})</span></span>
+            <button onClick={logout} className="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg transition-colors cursor-pointer">Logout</button>
           </div>
         ) : (
-          <div className="space-x-4">
-            <Link to="/login" className="hover:text-gray-300">Login</Link>
-            <Link to="/register" className="bg-indigo-500 hover:bg-indigo-600 px-3 py-1 rounded">Register</Link>
+          <div className="space-x-3">
+            <Link to="/login" className="text-xs font-bold px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white border border-slate-700 hover:border-slate-500 transition-colors">Login</Link>
+            <Link to="/register" className="text-xs font-bold px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-[0_0_16px_rgba(245,158,11,0.35)] border border-amber-400/50 transition-all">Register</Link>
           </div>
         )}
       </div>
